@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studies Recommendation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background-color: #fff;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function calculateScores() {
+            var mathScore = parseFloat(document.getElementById("math_score").value);
+            var historyScore = parseFloat(document.getElementById("history_score").value);
+            var physicsScore = parseFloat(document.getElementById("physics_score").value);
+            var chemistryScore = parseFloat(document.getElementById("chemistry_score").value);
+            var biologyScore = parseFloat(document.getElementById("biology_score").value);
+            var englishScore = parseFloat(document.getElementById("english_score").value);
+            var geographyScore = parseFloat(document.getElementById("geography_score").value);
+            var computerScienceScore = parseFloat(document.getElementById("computer_science_score").value);
+            var agricultureScore = parseFloat(document.getElementById("agriculture_score").value);
+
+            var totalScore = mathScore + historyScore + physicsScore + chemistryScore + biologyScore + englishScore + geographyScore + computerScienceScore + agricultureScore;
+            var averageScore = totalScore / 9;
+
+            document.getElementById("total_score").value = totalScore.toFixed(2);
+            document.getElementById("average_score").value = averageScore.toFixed(2);
+        }
+
+        function validateName(event) {
+            var regex = /^[A-Za-z]+$/;
+            if (!regex.test(event.target.value)) {
+                event.target.setCustomValidity("Please enter alphabetic characters only.");
+            } else {
+                event.target.setCustomValidity("");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="mynav shadow-sm" style="background:black; color:white;text:bold; padding:10px;width:100%;">
+        <h1 class="text-center">CareerWise Recommendation System</h1>
+    </div>
+    <div class="container">
+        <h2 class="text-center">Fill in the details to get recommendations</h2>
+        <form method="post" action="/pred">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" oninput="validateName(event)" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname:</label>
+                <input type="text" class="form-control" id="surname" name="surname" oninput="validateName(event)" required>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select class="form-control" id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="part_time_job">Part-Time Job:</label>
+                        <select class="form-control" id="part_time_job" name="part_time_job">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="math_score">Math Score:</label>
+                        <input type="number" class="form-control" id="math_score" name="math_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="history_score">History Score:</label>
+                        <input type="number" class="form-control" id="history_score" name="history_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="physics_score">Physics Score:</label>
+                        <input type="number" class="form-control" id="physics_score" name="physics_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="chemistry_score">Chemistry Score:</label>
+                        <input type="number" class="form-control" id="chemistry_score" name="chemistry_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="biology_score">Biology Score:</label>
+                        <input type="number" class="form-control" id="biology_score" name="biology_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="english_score">English Score:</label>
+                        <input type="number" class="form-control" id="english_score" name="english_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="geography_score">Geography Score:</label>
+                        <input type="number" class="form-control" id="geography_score" name="geography_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="computer_science_score">Computer Science Score:</label>
+                        <input type="number" class="form-control" id="computer_science_score" name="computer_science_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="agriculture_score">Agriculture Score:</label>
+                        <input type="number" class="form-control" id="agriculture_score" name="agriculture_score" min="0" max="100" onchange="calculateScores()" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="total_score">Total Score:</label>
+                        <input type="number" class="form-control" id="total_score" name="total_score" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="average_score">Average Score:</label>
+                        <input type="number" step="0.000001" class="form-control" id="average_score" name="average_score" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
